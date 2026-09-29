@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#e9e4dc">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>For Sunshine ☀️</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#e9e4dc;
+  color:#27282c;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",sans-serif
+}
+
+body{
+  overflow-x:hidden
+}
+
+button{
+  font:inherit
+}
+
+main{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px 16px
+}
+
+.card{
+  width:min(100%,430px);
+  min-height:620px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:34px 22px;
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:32px;
+  background:rgba(250,248,244,.76);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 24px 80px rgba(55,48,38,.14);
+  overflow:hidden
+}
+
+.glow{
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:#d8cbb7;
+  filter:blur(45px);
+  opacity:.38;
+  top:4%;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none
+}
+
+.intro{
+  position:relative;
+  z-index:2;
+  transition:opacity .6s ease,transform .6s ease
+}
+
+.intro.hidden{
+  opacity:0;
+  transform:translateY(-12px);
+  pointer-events:none
+}
+
+.kicker{
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#77694f;
+  margin-bottom:14px;
+  font-weight:600
+}
+
+h1{
+  margin:0;
+  color:#242529;
+  font-size:34px;
+  line-height:1.08;
+  letter-spacing:-.04em;
+  font-weight:750
+}
+
+.tap{
+  margin-top:13px;
+  color:#5e6065;
+  font-size:14px;
+  line-height:1.5
+}
+
+.gift{
+  position:relative;
+  z-index:3;
+  width:190px;
+  height:275px;
+  margin:24px auto 6px;
+  border:0;
+  background:none;
+  cursor:pointer;
+  padding:0
+}
+
+.gift:focus-visible{
+  outline:2px solid #9c8252;
+  outline-offset:7px;
+  border-radius:24px
+}
+
+.glass{
+  position:absolute;
+  inset:8px 18px 0;
+  border:1.5px solid rgba(78,75,70,.28);
+  border-radius:94px 94px 30px 30px;
+  background:linear-gradient(
+    110deg,
+    rgba(255,255,255,.62),
+    rgba(232,226,216,.32) 48%,
+    rgba(255,255,255,.5)
+  );
+  box-shadow:
+    inset 12px 0 22px rgba(255,255,255,.65),
+    inset -10px 0 18px rgba(90,80,65,.08),
+    0 10px 22px rgba(65,58,48,.08);
+  transition:transform .8s ease,opacity .8s ease
+}
+
+.glass:after{
+  content:"";
+  position:absolute;
+  top:20px;
+  left:21px;
+  width:12px;
+  height:105px;
+  border-radius:50%;
+  background:rgba(255,255,255,.78);
+  transform:rotate(9deg)
+}
+
+.base{
+  position:absolute;
+  bottom:0;
+  left:24px;
+  right:24px;
+  height:25px;
+  border-radius:50%;
+  background:#cbbda5;
+  box-shadow:0 6px 14px rgba(70,60,45,.18)
+}
+
+.stem{
+  position:absolute;
+  width:5px;
+  height:151px;
+  background:#365234;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  border-radius:6px
+}
+
+.leaf{
+  position:absolute;
+  width:39px;
+  height:19px;
+  background:#496744;
+  border-radius:100% 0 100% 0;
+  opacity:.98
+}
+
+.l1{
+  left:50%;
+  bottom:78px;
+  transform:rotate(205deg)
+}
+
+.l2{
+  left:50%;
+  bottom:110px;
+  transform:rotate(24deg)
+}
+
+.l3{
+  left:50%;
+  bottom:52px;
+  transform:rotate(24deg)
+}
+
+.rose{
+  position:absolute;
+  left:50%;
+  top:25px;
+  width:100px;
+  height:100px;
+  transform:translateX(-50%);
+  transition:transform 1s cubic-bezier(.2,.8,.2,1);
+  filter:drop-shadow(0 5px 7px rgba(75,68,57,.16))
+}
+
+.p{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:52px;
+  height:62px;
+  background:linear-gradient(145deg,#fffefa,#dedbd4);
+  border:1px solid rgba(115,112,105,.16);
+  border-radius:58% 42% 55% 45%;
+  transform-origin:50% 80%;
+  box-shadow:0 3px 10px rgba(70,65,58,.12);
+  transition:transform 1s cubic-bezier(.2,.8,.2,1)
+}
+
+.p1{transform:translate(-50%,-62%) rotate(0)}
+.p2{transform:translate(-50%,-62%) rotate(45deg)}
+.p3{transform:translate(-50%,-62%) rotate(90deg)}
+.p4{transform:translate(-50%,-62%) rotate(135deg)}
+.p5{transform:translate(-50%,-62%) rotate(180deg)}
+.p6{transform:translate(-50%,-62%) rotate(225deg)}
+.p7{transform:translate(-50%,-62%) rotate(270deg)}
+.p8{transform:translate(-50%,-62%) rotate(315deg)}
+
+.center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:47px;
+  height:47px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 38% 35%,
+    #fff,
+    #ddd9d0 74%
+  );
+  border:1px solid rgba(105,100,92,.14);
+  box-shadow:0 2px 9px rgba(80,70,55,.12)
+}
+
+.message{
+  position:absolute;
+  z-index:4;
+  left:22px;
+  right:22px;
+  top:17%;
+  transform:translateY(28px);
+  opacity:0;
+  pointer-events:none;
+  transition:
+    opacity .7s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1)
+}
+
+.message.show{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto
+}
+
+.message h2{
+  margin:0 0 14px;
+  color:#25262a;
+  font-size:25px;
+  letter-spacing:-.025em
+}
+
+.message p{
+  margin:0 auto;
+  max-width:315px;
+  color:#424449;
+  font-size:16px;
+  line-height:1.72
+}
+
+.message .small{
+  margin-top:15px;
+  color:#66686d;
+  font-size:14px
+}
+
+.date{
+  margin-top:22px;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#786846;
+  font-weight:600
+}
+
+.hint{
+  position:absolute;
+  bottom:24px;
+  font-size:12px;
+  color:#686a6e;
+  transition:opacity .4s ease
+}
+
+.card.open .hint{
+  opacity:0
+}
+
+.card.open .intro{
+  opacity:0;
+  transform:translateY(-12px);
+  pointer-events:none
+}
+
+.card.open .gift{
+  z-index:1;
+  transform:translateY(105px) scale(.94)
+}
+
+.card.open .glass{
+  transform:translateY(-30px) scale(.98);
+  opacity:0
+}
+
+.card.open .rose{
+  transform:translateX(-50%) scale(1.07)
+}
+
+.card.open .p1{
+  transform:translate(-50%,-76%) rotate(-8deg)
+}
+
+.card.open .p2{
+  transform:translate(-50%,-70%) rotate(37deg)
+}
+
+.card.open .p3{
+  transform:translate(-50%,-66%) rotate(82deg)
+}
+
+.card.open .p4{
+  transform:translate(-50%,-70%) rotate(127deg)
+}
+
+.card.open .p5{
+  transform:translate(-50%,-76%) rotate(188deg)
+}
+
+.card.open .p6{
+  transform:translate(-50%,-70%) rotate(233deg)
+}
+
+.card.open .p7{
+  transform:translate(-50%,-66%) rotate(278deg)
+}
+
+.card.open .p8{
+  transform:translate(-50%,-70%) rotate(323deg)
+}
+
+@media(max-width:360px){
+
+  .card{
+    min-height:590px;
+    padding:28px 18px
+  }
+
+  h1{
+    font-size:30px
+  }
+
+  .gift{
+    transform:scale(.92);
+    margin-top:12px;
+    margin-bottom:-5px
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+    transition:none!important;
+    animation:none!important
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<section class="card" id="card">
+
+<div class="glow"></div>
+
+<div class="intro">
+
+<div class="kicker">5 October 2026</div>
+
+<h1>For Sunshine ☀️</h1>
+
+<div class="tap">
+A little something for you.<br>
+Tap the rose.
+</div>
+
+</div>
+
+
+<button class="gift" id="gift" aria-label="Open the flower">
+
+<div class="glass"></div>
+
+<div class="stem"></div>
+
+<div class="leaf l1"></div>
+<div class="leaf l2"></div>
+<div class="leaf l3"></div>
+
+<div class="rose">
+
+<span class="p p1"></span>
+<span class="p p2"></span>
+<span class="p p3"></span>
+<span class="p p4"></span>
+<span class="p p5"></span>
+<span class="p p6"></span>
+<span class="p p7"></span>
+<span class="p p8"></span>
+
+<span class="center"></span>
+
+</div>
+
+<div class="base"></div>
+
+</button>
+
+
+<div class="message" id="message">
+
+<h2>Happy Teacher’s Day, Sunshine ☀️</h2>
+
+<p>
+Just a little reminder that I truly appreciate you and all that you do.
+</p>
+
+<p>
+I hope today reminds you of how much your work and kindness matter.
+</p>
+
+<p>
+Wishing you a wonderful Teacher’s Day. 🤍
+</p>
+
+</div>
+
+
+<div class="hint">
+A little light, just for today.
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+
+const card = document.getElementById("card");
+const gift = document.getElementById("gift");
+const message = document.getElementById("message");
+
+gift.addEventListener("click", () => {
+
+  if(card.classList.contains("open")) return;
+
+  card.classList.add("open");
+
+  setTimeout(() => {
+    message.classList.add("show");
+  },520);
+
+});
+
+</script>
+
+
+<!-- Anonymous visit counter -->
+<script>
+
+(function(){
+
+  fetch(
+    "https://countapi.mileshilliard.com/api/v1/hit/teacher_day_2026_sunshine_7f3c91b2e6",
+    {
+      method:"GET",
+      cache:"no-store",
+      keepalive:true
+    }
+  ).catch(function(){});
+
+})();
+
+</script>
+
+</body>
+</html>
